@@ -13,7 +13,7 @@ function App() {
   const [loading ,setLoading] = useState(false);
   const [gameOver, setGameOver] = useState(true);
 
-  console.log(fetchQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
+  //console.log(fetchQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
 
   const startTrivia = async ()=>{
     setLoading(true);
@@ -23,13 +23,15 @@ function App() {
       TOTAL_QUESTIONS,
       Difficulty.EASY,
     );
+    console.log(newQuestions)
       setLoading(false);
+
   }
 
   return (
     <div className="App">
   <h1>QUIZ APP</h1>
-  <button>Start</button>
+  <button className="start" onClick={startTrivia}>Start</button>
   <p className="score">Score:</p>
   <QuestionCard />
   <button>Next question</button>

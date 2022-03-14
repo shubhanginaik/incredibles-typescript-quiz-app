@@ -17,7 +17,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [gameOver, setGameOver] = useState(true);
   const [TOTAL_QUESTIONS, setNoOfQuestions] = useState(0);
+  const [number,setNumber] = useState(0);
   const [type, setType] = useState("easy");
+  const[score,setscore] =useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObj[]>([]);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   //console.log(fetchQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
@@ -59,13 +61,23 @@ function App() {
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
         <button className="start" onClick={startTrivia}>
           Start
-        </button>
+        </button>  
       )}
+      
       {loading && <p>Loading Trivias ... </p>}
       {!loading &&
         !gameOver &&
         userAnswers.length !== TOTAL_QUESTIONS &&
-        questions.length > 0 && <QuestionCard />}
+        questions.length > 0 && <QuestionCard
+        questionNo={number +1}
+        totalquestions = {TOTAL_QUESTIONS}
+        question ={questions[number].question}
+        answers={questions[number].answers}
+        userAnswer={userAnswers ? userAnswers[number]:undefined}
+        callback={questionNumberHandler}
+
+        
+        />}
       <br></br>
       <button>Next question</button>
     </div>

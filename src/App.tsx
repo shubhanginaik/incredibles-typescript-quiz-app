@@ -28,7 +28,7 @@ function App() {
     setLoading(true);
     setGameOver(false);
 
-    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, type);
+    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
     console.log(newQuestions);
     setLoading(false);
   };

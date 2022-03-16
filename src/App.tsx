@@ -55,6 +55,16 @@ const App: React.FC = () => {
     }
   };
 
+  const nextQuestion = () => {
+    // if not the last question move to the next one
+    const nextQ = number + 1;
+
+    if (nextQ === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQ);
+    }
+  };
   const questionNumberHandler = (event: React.ChangeEvent) => {
     setNoOfQuestions(+(event.target as HTMLInputElement).value);
   };
@@ -102,7 +112,11 @@ const App: React.FC = () => {
         
         />}
       <br></br>
-      <button>Next question</button>
+      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
+          <button className='next' onClick={nextQuestion}>
+            Next Question
+          </button>
+        ) : null}
     </div>
   );
 }

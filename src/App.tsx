@@ -26,8 +26,9 @@ const App: React.FC = () => {
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
+    console.log(type);
 
-    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
+    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, type);
     console.log(newQuestions);
     setQuestions(newQuestions);
     setScore(0);

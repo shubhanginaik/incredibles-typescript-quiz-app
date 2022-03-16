@@ -98,7 +98,16 @@ const App: React.FC = () => {
         </button>  
       )}
       
-      {loading && <p>Loading Trivias ... </p>}
+      {loading &&
+       <div>
+       <div className="loader-ring">
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+       </div>
+     </div>
+       }
       {!loading &&
         !gameOver &&
         userAnswers.length !== TOTAL_QUESTIONS &&

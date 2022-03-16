@@ -5,15 +5,15 @@ type Props= {
     callback:any;
     userAnswer:any;
     questionNo:number;
-    totalquestions:number;
+    totalQuestions:number;
 
 }
 
-const QuestionCard: React.FC<Props>= ({question, answers,callback,userAnswer,questionNo,totalquestions}) =>
+const QuestionCard: React.FC<Props>= ({question, answers,callback,userAnswer,questionNo,totalQuestions}) =>
 (
     <div>
         <p className="number">
-            Question:{questionNo}/{totalquestions}
+            Question:{questionNo}/{totalQuestions}
         </p>
 
         <p dangerouslySetInnerHTML={{__html:question}} />

@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+x# Getting Started with Create React App
 # Quiz App with reactjs and typescript
 ## Steps to follow
 

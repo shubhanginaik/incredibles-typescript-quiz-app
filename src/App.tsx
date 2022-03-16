@@ -87,9 +87,9 @@ const App: React.FC = () => {
           <option value="hard">HARD</option>
         </select>
       </span>
-      {!gameOver && <p>Score: </p>}
+      {!gameOver && <p>Score: {score} </p>}
       {userAnswers.length === TOTAL_QUESTIONS && (
-        <p>Game Over. Press Start button to play again</p>
+        <p>Press Start button to play again</p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
         <button className="start" onClick={startTrivia}>

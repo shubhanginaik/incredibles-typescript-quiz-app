@@ -16,9 +16,9 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [gameOver, setGameOver] = useState(true);
   const [TOTAL_QUESTIONS, setNoOfQuestions] = useState(0);
-  const [number,setNumber] = useState(0);
+  const [number, setNumber] = useState(0);
   const [type, setType] = useState("easy");
-  const[score,setScore] =useState(0);
+  const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObj[]>([]);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   //console.log(fetchQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
@@ -36,7 +36,7 @@ const App: React.FC = () => {
     setNumber(0);
     setLoading(false);
   };
-  
+
   const checkAnswer = (e: any) => {
     if (!gameOver) {
       // User's answer
@@ -67,6 +67,7 @@ const App: React.FC = () => {
     }
   };
   const questionNumberHandler = (event: React.ChangeEvent) => {
+    event.preventDefault();
     setNoOfQuestions(+(event.target as HTMLInputElement).value);
   };
   const typeHandler = (event: React.ChangeEvent) => {
@@ -76,59 +77,69 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <h1>QUIZ APP</h1>
-      <label>Number of Questions </label>
-      <input type="text" onChange={questionNumberHandler} />
-      <br></br>
-      <br></br>
-      <span>
-        <p>Please select difficulty level</p>
-        <select name="done" defaultValue="easy" onChange={typeHandler}>
-          <option value="easy">EASY</option>
-          <option value="medium">MEDIUM</option>
-          <option value="hard">HARD</option>
-        </select>
-      </span>
+
       {!gameOver && <p>Score: {score} </p>}
       {userAnswers.length === TOTAL_QUESTIONS && (
         <p>Press Start button to play again</p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
-        <button className="start" onClick={startTrivia}>
-          Start
-        </button>  
+        <div>
+          <label>Number of Questions </label>
+          <input
+            type="text"
+            id="noOfQuestions"
+            onChange={questionNumberHandler}
+          />
+          <br></br>
+          <br></br>
+          <span>
+            <p>Please select difficulty level</p>
+            <select name="done" defaultValue="easy" onChange={typeHandler}>
+              <option value="easy">EASY</option>
+              <option value="medium">MEDIUM</option>
+              <option value="hard">HARD</option>
+            </select>
+          </span>
+          <button className="start" onClick={startTrivia}>
+            Start
+          </button>
+        </div>
       )}
-      
-      {loading &&
-       <div>
-       <div className="loader-ring">
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-       </div>
-     </div>
-       }
+
+      {loading && (
+        <div>
+          <div className="loader-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      )}
       {!loading &&
         !gameOver &&
         userAnswers.length !== TOTAL_QUESTIONS &&
-        questions.length > 0 && <QuestionCard
-        questionNo={number +1}
-        totalQuestions = {TOTAL_QUESTIONS}
-        question ={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number]:undefined}
-        callback={checkAnswer}
-
-        
-        />}
+        questions.length > 0 && (
+          <QuestionCard
+            questionNo={number + 1}
+            totalQuestions={TOTAL_QUESTIONS}
+            question={questions[number].question}
+            answers={questions[number].answers}
+            userAnswer={userAnswers ? userAnswers[number] : undefined}
+            callback={checkAnswer}
+          />
+        )}
       <br></br>
-      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
-          <button className='next' onClick={nextQuestion}>
-            Next Question
-          </button>
-        ) : null}
+      {!gameOver &&
+      !loading &&
+      userAnswers.length === number + 1 &&
+      number !== TOTAL_QUESTIONS - 1 ? (
+        <button className="next" onClick={nextQuestion}>
+          Next Question
+        </button>
+      ) : null}
     </div>
   );
-}
+};
 
 export default App;

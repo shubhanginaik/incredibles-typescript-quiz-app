@@ -17,15 +17,22 @@ export type AnswerObj = {
 const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [gameOver, setGameOver] = useState(true);
-  const [TOTAL_QUESTIONS, setNoOfQuestions] = useState(0);
   const [number, setNumber] = useState(0);
   const [type, setType] = useState("easy");
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObj[]>([]);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
+  let [TOTAL_QUESTIONS, setNoOfQuestions] = useState(0);
   //console.log(fetchQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
 
   const startTrivia = async () => {
+    let inputElement = document.getElementById(
+      "noOfQuestions"
+    )! as HTMLInputElement;
+    setNoOfQuestions(+inputElement.value);
+    console.log(+inputElement.value)
+    console.log(TOTAL_QUESTIONS)
+    TOTAL_QUESTIONS=+inputElement.value
     setLoading(true);
     setGameOver(false);
     console.log(type);
@@ -68,10 +75,7 @@ const App: React.FC = () => {
       setNumber(nextQ);
     }
   };
-  const questionNumberHandler = (event: React.ChangeEvent) => {
-    event.preventDefault();
-    setNoOfQuestions(+(event.target as HTMLInputElement).value);
-  };
+   
   const typeHandler = (event: React.ChangeEvent) => {
     console.log("type reached");
     setType((event.target as HTMLSelectElement).value);
@@ -93,7 +97,7 @@ const App: React.FC = () => {
           <input
             type="text"
             id="noOfQuestions"
-            onChange={questionNumberHandler}
+            // onChange={questionNumberHandler}
           />
          
           <span>

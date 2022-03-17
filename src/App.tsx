@@ -84,7 +84,9 @@ const App: React.FC = () => {
       <h1>QUIZ APP</h1>
 
       {!gameOver && <p>Score: {score} </p>}
-      {userAnswers.length === TOTAL_QUESTIONS && (
+      {userAnswers.length === TOTAL_QUESTIONS && 
+       //questions.length > 0 && 
+       (
         <p></p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
@@ -122,8 +124,7 @@ const App: React.FC = () => {
       )}
       {!loading &&
         !gameOver &&
-        userAnswers.length !== TOTAL_QUESTIONS &&
-        questions.length > 0 && (
+         (
           <QuestionCard
             questionNo={number + 1}
             totalQuestions={TOTAL_QUESTIONS}

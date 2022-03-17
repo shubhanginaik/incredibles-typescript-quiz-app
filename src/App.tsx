@@ -26,8 +26,9 @@ const App: React.FC = () => {
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
+    console.log(type);
 
-    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
+    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, type);
     console.log(newQuestions);
     setQuestions(newQuestions);
     setScore(0);
@@ -55,6 +56,16 @@ const App: React.FC = () => {
     }
   };
 
+  const nextQuestion = () => {
+    // if not the last question move to the next one
+    const nextQ = number + 1;
+
+    if (nextQ === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQ);
+    }
+  };
   const questionNumberHandler = (event: React.ChangeEvent) => {
     setNoOfQuestions(+(event.target as HTMLInputElement).value);
   };
@@ -77,9 +88,9 @@ const App: React.FC = () => {
           <option value="hard">HARD</option>
         </select>
       </span>
-      {!gameOver && <p>Score: </p>}
+      {!gameOver && <p>Score: {score} </p>}
       {userAnswers.length === TOTAL_QUESTIONS && (
-        <p>Game Over. Press Start button to play again</p>
+        <p>Press Start button to play again</p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
         <button className="start" onClick={startTrivia}>
@@ -87,7 +98,16 @@ const App: React.FC = () => {
         </button>  
       )}
       
-      {loading && <p>Loading Trivias ... </p>}
+      {loading &&
+       <div>
+       <div className="loader-ring">
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+       </div>
+     </div>
+       }
       {!loading &&
         !gameOver &&
         userAnswers.length !== TOTAL_QUESTIONS &&
@@ -102,7 +122,11 @@ const App: React.FC = () => {
         
         />}
       <br></br>
-      <button>Next question</button>
+      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
+          <button className='next' onClick={nextQuestion}>
+            Next Question
+          </button>
+        ) : null}
     </div>
   );
 }

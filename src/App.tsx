@@ -30,16 +30,20 @@ const App: React.FC = () => {
       "noOfQuestions"
     )! as HTMLInputElement;
     setNoOfQuestions(+inputElement.value);
-    console.log(+inputElement.value)
-    console.log(TOTAL_QUESTIONS)
     TOTAL_QUESTIONS=+inputElement.value
     setLoading(true);
     setGameOver(false);
     console.log(type);
+    if(TOTAL_QUESTIONS>1){
+      const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, type);
+      console.log(newQuestions);
+      setQuestions(newQuestions);
+    } else{
+      const newQuestions = await fetchQuizQuestions(1, type);
+      console.log(newQuestions);
+      setQuestions(newQuestions);
+    }
 
-    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, type);
-    console.log(newQuestions);
-    setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
@@ -75,10 +79,7 @@ const App: React.FC = () => {
       setNumber(nextQ);
     }
   };
-  const questionNumberHandler = (event: React.ChangeEvent) => {
-    event.preventDefault();
-    setNoOfQuestions(+(event.target as HTMLInputElement).value);
-  };
+  
   const typeHandler = (event: React.ChangeEvent) => {
     console.log("type reached");
     setType((event.target as HTMLSelectElement).value);
@@ -102,7 +103,8 @@ const App: React.FC = () => {
           <input
             type="text"
             id="noOfQuestions"
-            onChange={questionNumberHandler}
+            required
+            //onChange={questionNumberHandler}
           />
          
           <span>

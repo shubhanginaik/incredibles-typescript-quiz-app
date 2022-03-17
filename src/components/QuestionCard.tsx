@@ -3,7 +3,7 @@ import React from 'react';
 import { AnswerObj } from '../App';
 
 // Styles
-import { ButtonWrapper } from './QuestionCard.styles';
+import { ButtonWrapper, Wrapper } from './QuestionCard.styles';
 
 type Props = {
   question: string;
@@ -22,7 +22,7 @@ const QuestionCard: React.FC<Props> = ({
   questionNo,
   totalQuestions,
 }) => (
-  <div>
+  <Wrapper>
     <p className='number'>
       Question: {questionNo} / {totalQuestions}
     </p>
@@ -40,7 +40,7 @@ const QuestionCard: React.FC<Props> = ({
         </ButtonWrapper>
       ))}
     </div>
-  </div>
+  </Wrapper>
 );
 
 export default QuestionCard;

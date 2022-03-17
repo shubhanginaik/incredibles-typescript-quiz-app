@@ -4,6 +4,8 @@ import "./App.css";
 import { fetchQuizQuestions } from "./API";
 
 import QuestionCard from "./components/QuestionCard";
+
+import { GlobalStyle, Wrapper } from './App.style';
 //type
 import { QuestionState, Difficulty } from "./API";
 export type AnswerObj = {
@@ -75,12 +77,15 @@ const App: React.FC = () => {
     setType((event.target as HTMLSelectElement).value);
   };
   return (
+    
     <div className="App">
+      <GlobalStyle />
+      <Wrapper>
       <h1>QUIZ APP</h1>
 
       {!gameOver && <p>Score: {score} </p>}
       {userAnswers.length === TOTAL_QUESTIONS && (
-        <p>Press Start button to play again</p>
+        <p>Press Start button to play</p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
         <div>
@@ -130,6 +135,14 @@ const App: React.FC = () => {
           />
         )}
       <br></br>
+
+      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
+          <button className='next' onClick={nextQuestion}>
+            Next Question
+          </button>
+        ) : null}
+        </Wrapper>
+
       {!gameOver &&
       !loading &&
       userAnswers.length === number + 1 &&
@@ -138,6 +151,8 @@ const App: React.FC = () => {
           Next Question
         </button>
       ) : null}
+        </Wrapper>
+
     </div>
   );
 };

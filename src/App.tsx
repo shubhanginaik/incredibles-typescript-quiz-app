@@ -7,7 +7,7 @@ import QuestionCard from "./components/QuestionCard";
 
 import { GlobalStyle, Wrapper } from './App.style';
 //type
-import { QuestionState, Difficulty } from "./API";
+import { QuestionState } from "./API";
 export type AnswerObj = {
   question: string;
   answer: string; //user answer
@@ -23,8 +23,7 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObj[]>([]);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   let [TOTAL_QUESTIONS, setNoOfQuestions] = useState(0);
-  //console.log(fetchQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
-
+  
   const startTrivia = async () => {
     let inputElement = document.getElementById(
       "noOfQuestions"
@@ -145,7 +144,6 @@ const App: React.FC = () => {
         )}
       <br></br>
 
-
       {!gameOver &&
       !loading &&
       userAnswers.length === number + 1 &&
@@ -155,7 +153,6 @@ const App: React.FC = () => {
         </button>
       ) : null}
         </Wrapper>
-
     </div>
   );
 };

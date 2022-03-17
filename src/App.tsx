@@ -4,6 +4,8 @@ import "./App.css";
 import { fetchQuizQuestions } from "./API";
 
 import QuestionCard from "./components/QuestionCard";
+
+import { GlobalStyle, Wrapper } from './App.style';
 //type
 import { QuestionState, Difficulty } from "./API";
 export type AnswerObj = {
@@ -74,12 +76,14 @@ const App: React.FC = () => {
     setType((event.target as HTMLSelectElement).value);
   };
   return (
+    
     <div className="App">
+      <GlobalStyle />
+      <Wrapper>
       <h1>QUIZ APP</h1>
       <label>Number of Questions </label>
       <input type="text" onChange={questionNumberHandler} />
-      <br></br>
-      <br></br>
+      
       <span>
         <p>Please select difficulty level</p>
         <select name="done" defaultValue="easy" onChange={typeHandler}>
@@ -90,7 +94,7 @@ const App: React.FC = () => {
       </span>
       {!gameOver && <p>Score: {score} </p>}
       {userAnswers.length === TOTAL_QUESTIONS && (
-        <p>Press Start button to play again</p>
+        <p>Press Start button to play</p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
         <button className="start" onClick={startTrivia}>
@@ -127,6 +131,7 @@ const App: React.FC = () => {
             Next Question
           </button>
         ) : null}
+        </Wrapper>
     </div>
   );
 }

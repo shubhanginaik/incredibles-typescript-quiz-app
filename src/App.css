@@ -1,65 +1,15 @@
-<<<<<<< HEAD
-=======
-.App {
-  text-align: center;
-  height: 90vh;
-  width: 1600px;
+
+span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-input{
-  width: 40px;
-  height: 30px;
-  font-size: large;
-  padding-left: 5px;
+
+label, span p {
+  color: white;
+  font-family: 'Catamaran', sans-serif;
 }
-p,label{
-  font-family: sans-serif;
-  font-size: 20px;
+
+input, select {
+  margin: 0.5rem;
 }
-button{
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-select{
-  width: 100px;
-  height: 30px;
-  cursor: pointer;
-}
-/*Loader code*/
-.loader-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.loader-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid rgb(60, 60, 60);
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.2, 0, 0.2, .5) infinite;
-  border-color: rgb(60, 60, 60) transparent transparent transparent;
-}
-.loader-ring div:nth-child(1) {
-  animation-delay: -0.2s;
-}
-.loader-ring div:nth-child(2) {
-  animation-delay: -0.1s;
-}
-.loader-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes loader-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
->>>>>>> ef2ac6e759a1c3560e2acfdbc7096fcd0f365c52

@@ -75,7 +75,10 @@ const App: React.FC = () => {
       setNumber(nextQ);
     }
   };
-   
+  const questionNumberHandler = (event: React.ChangeEvent) => {
+    event.preventDefault();
+    setNoOfQuestions(+(event.target as HTMLInputElement).value);
+  };
   const typeHandler = (event: React.ChangeEvent) => {
     console.log("type reached");
     setType((event.target as HTMLSelectElement).value);
@@ -97,7 +100,7 @@ const App: React.FC = () => {
           <input
             type="text"
             id="noOfQuestions"
-            // onChange={questionNumberHandler}
+            onChange={questionNumberHandler}
           />
          
           <span>

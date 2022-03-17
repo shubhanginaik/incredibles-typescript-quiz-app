@@ -85,18 +85,17 @@ const App: React.FC = () => {
 
       {!gameOver && <p>Score: {score} </p>}
       {userAnswers.length === TOTAL_QUESTIONS && (
-        <p>Press Start button to play</p>
+        <p></p>
       )}
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
-        <div>
+        <div className="opening">
           <label>Number of Questions </label>
           <input
             type="text"
             id="noOfQuestions"
             onChange={questionNumberHandler}
           />
-          <br></br>
-          <br></br>
+         
           <span>
             <p>Please select difficulty level</p>
             <select name="done" defaultValue="easy" onChange={typeHandler}>
@@ -136,12 +135,6 @@ const App: React.FC = () => {
         )}
       <br></br>
 
-      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
-          <button className='next' onClick={nextQuestion}>
-            Next Question
-          </button>
-        ) : null}
-        </Wrapper>
 
       {!gameOver &&
       !loading &&
